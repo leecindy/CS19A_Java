@@ -1,0 +1,133 @@
+//CSCI 19A - Assignment 2 by Cindy Lee -- due 6/30/2016
+
+import java.util.*;
+import java.text.*;
+import java.math.*;
+
+public class Assignment2
+{
+  public static void main (String[] args)
+  {
+    Scanner input = new Scanner(System.in);
+    NumberFormat nUS = NumberFormat.getCurrencyInstance(Locale.US);
+    DecimalFormat df = new DecimalFormat("#.00");
+    DecimalFormat pct = new DecimalFormat("#.0%");
+
+    //Declare variables and values
+    double totHours, regHours=0, otHours=0, maxHours=60.0, regPayHours=40.0;
+    double payRate, otRate = 1.25, minRate = 8.5, maxRate = 100.0; 
+    double fedInput, stateInput, fedTaxRate, stateTaxRate, totTaxRate, maxTaxRate = .8; 
+    double regPay, otPay, grossPay, fedTax, stateTax, netPay;  
+    
+    //Ask for inputs
+    
+    //Last Name
+    System.out.println("Please enter the employee's LAST Name");
+    String lastName = input.nextLine().toUpperCase();
+    
+    //First Name
+    System.out.println("Please enter the employee's FIRST Name");
+    String firstName = input.nextLine().toUpperCase();
+    
+    //ID Number
+    System.out.println("Please enter the employee's ID Number");
+    String id = input.nextLine().toUpperCase();
+    
+    //Total Hours
+    System.out.println("Please enter the employee's Total Hours Worked (Up to 60 hours)");
+    totHours = Math.abs(input.nextDouble());
+    if (totHours>maxHours)
+    {
+      System.out.println("You\'ve entered more than 60 hours, default to 60");
+      totHours = maxHours;
+    }
+    else 
+      totHours = totHours;
+    
+    //Pay Rate
+    System.out.println("Please enter the employee's Pay Per Hour");
+    payRate = Math.abs(input.nextDouble());
+    if (payRate<minRate)
+    {
+      System.out.println("You\'ve entered a rate less than the minimum wage, default to minimal wage");
+      payRate = minRate;
+    }
+    else if (payRate>maxRate)
+    {
+      System.out.println("You\'ve entered a rate higher than the maximum wage, default to maximum wage");
+      payRate = maxRate;
+    }
+    else
+      payRate = payRate;
+    
+    //Federal Tax
+    System.out.println("Please enter the Federal Tax Rate");
+    fedInput = Math.abs(input.nextDouble());
+    if (fedInput>1.0)
+      fedTaxRate=fedInput/100;
+    else
+      fedTaxRate=fedInput;
+    if (fedTaxRate>.4)
+    {
+      System.out.println("Federal Tax Rate ranges from zero to 40%, default to 40%");
+      fedTaxRate=.4;
+    }
+    
+    //State Tax
+    System.out.println("Please enter the State Tax Rate");
+    stateInput = Math.abs(input.nextDouble());
+    if (stateInput>1.0)
+      stateTaxRate=stateInput/100;
+    else
+      stateTaxRate=stateInput;
+    if (stateTaxRate>.4)
+    {
+      System.out.println("State Tax Rate ranges from zero to 40%, default to 40%");
+      stateTaxRate=.4;
+    }
+    
+    //Calculations
+    if (totHours>regPayHours)
+    {
+      regHours = regPayHours;
+      otHours = totHours-regHours;
+    }
+    else
+      regHours = totHours;
+    
+    regPay = regHours * payRate;
+    otPay = otHours * payRate * otRate;
+    grossPay = regPay + otPay;
+    fedTax = grossPay * fedTaxRate;
+    stateTax = grossPay * stateTaxRate;
+    netPay = grossPay - fedTax - stateTax;
+    
+    //Output
+    System.out.println("Employee ID:\t" + id);
+    System.out.println("Employee Name:\t" + lastName + ", " + firstName);
+    System.out.println("Total Weekly Hours:\t" + df.format(totHours));
+    if (otHours>0)
+    {
+      System.out.println("\nRegular Hours: " + df.format(regHours) + "\t\tOvertime Hours: " + df.format(otHours));
+      System.out.println("\nRegular Hours: " + df.format(regHours) + " @ " + nUS.format(payRate) 
+                           + " per Regular Hour\t" + nUS.format(regPay));
+      System.out.println("Overtime Hours: " + df.format(otHours) + " @ " + nUS.format(payRate*otRate) 
+                           + " per Overtime Hour\t" + nUS.format(otPay));
+     }
+    else
+    {
+      System.out.println("\nRegular Hours: " + df.format(regHours));
+      System.out.println("\nRegular Hours: " + df.format(regHours) + " @ " + nUS.format(payRate) 
+                           + " per Regular Hour\t" + nUS.format(regPay));
+    }
+    System.out.println("\nGross Pay\t\t\t\t" + nUS.format(grossPay));
+    System.out.println("Federal Taxes Withheld @ " + pct.format(fedTaxRate) + "\t\t" + nUS.format(fedTax));
+    System.out.println("State Taxes Withheld @ " + pct.format(stateTaxRate) + "\t\t" + nUS.format(stateTax));
+    System.out.println("Net Pay\t\t\t\t" + nUS.format(netPay));
+    
+  }
+                       
+}
+    
+    
+    

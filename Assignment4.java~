@@ -1,0 +1,35 @@
+import java.util.*;
+import java.Math.*;
+import java.text.*;
+
+public class Assignment4
+{
+  public static void main(String[] args)
+  {
+    Scanner input = new Scanner(System.in);
+    int choice;
+    
+    int[][] factories = {{500, 100, 50}, //factory 1
+                         {70, 1000, 5000}, //factory 2
+                         {534, 2000, 5000}, //factory 3
+                         {80, 700, 83}, //factory 4
+                         {50, 100, 780}}; //factory 5
+    
+    Systen.out.println("Select an Option"+
+                       "\n1 - Display"+
+                       "\n2 - Update a Factory's Product Production"+
+                       "\n3 - Factory Production Statistics"+
+                       "\n4 - Quit This Application"+
+                       "\nEnter 1 - 4:");
+    
+    choice = input.nextInt();
+    
+    switch (choice)
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+  }
+}
+      
+      

@@ -1,0 +1,78 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+public class Assignment6
+{
+  public static void main(String[] args) throws IOException
+  {
+    boolean again = true;
+    while (again)
+    {
+      //Declaration
+      Scanner input = new Scanner(System.in);
+      String customerID, customerName;
+      int numDunsels = 0, numWidgets = 0, numGidgets = 0, numLightweights = 0;
+      String record = "";
+
+      //Display options for user
+      System.out.println("Please select an option: " +
+                          "\n1 - Add a record" +
+                          "\n2 - Read all records" +
+                          "\n3 - Quit this application");
+     
+      int choice = input.nextInt();
+      
+      switch(choice)
+      {
+        case 1:
+          BufferedWriter writefile = new BufferedWriter(new FileWriter("Invoice.dat", true));
+          PrintWriter outfile = new PrintWriter(writefile);
+          
+          System.out.println("Please enter the Customer ID:");
+          customerID = input.nextLine();
+          customerID = customerID.toUpperCase();
+          
+          System.out.println("Please enter the Customer Name:");
+          customerName = input.nextLine();
+          customerName = customerName.toUpperCase();
+          
+          System.out.println("Please enter the Number of Dunsels Ordered:");
+          numDunsels = Math.abs((int)input.nextFloat()); //make sure this is positive integer
+          
+          System.out.println("Please enter the Number of Widgets Ordered:");
+          numWidgets = Math.abs((int)input.nextFloat());
+          
+          System.out.println("Please enter the Number of Gidgets Ordered:");
+          numGidgets = Math.abs((int)input.nextFloat());
+          
+          System.out.println("Please enter the Number of Lightweights Ordered:");
+          numLightweights = Math.abs((int)input.nextFloat());
+          
+          record = customerID + "," + customerName + "," + numDunsels + "," + numWidgets + "," + numGidgets + "," + numLightweights;
+          //outfile.println(record);
+          System.out.println(record);  //test output
+          
+          //outfile.close();
+                                                        
+         break;
+        
+        case 2:
+          
+          break;
+          
+        case 3:
+          System.out.println("Ending this application...");
+          System.exit(0);
+          break;
+        
+        default:
+          System.out.println("Invalid input.  Ending this application...");
+          System.exit(0);
+          break;
+          
+      }
+      
+    }
+  }
+}

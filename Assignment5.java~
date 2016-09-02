@@ -1,0 +1,79 @@
+//CSCI 19A - Assignment 5 by Cindy Lee -- due 7/21/2016
+
+import java.util.*;
+
+public class Assignment5
+{
+  public static void main(String[] args)
+  {
+    char again = 'y';
+    Scanner input = new Scanner(System.in);
+    
+    while (again == 'y')
+    {
+      String line;
+      String reverse = "";
+      String reverseUp = "";
+      
+      int spaces = 0, letters = 0, digits = 0, upper = 0, lower = 0;
+      
+      System.out.println("Please enter a line: ");
+      line = input.nextLine();
+      
+      int size = line.length();
+      
+      // To test if the line is a palindrome
+      for (int i=size-1; i>=0; i--)
+      {
+        reverse += line.charAt(i);
+      }
+      
+      reverseUp = reverse.toUpperCase();
+      
+      // Output palindrome
+      System.out.println("You entered \"" + line + "\" containing " + size + " characters.");
+      System.out.println("Backwards it is \"" + reverse + "\"");
+      
+      if (line.equalsIgnoreCase(reverse))
+        System.out.println("\"" + line + "\" is a Palindrome since it is identical to \"" + reverseUp + "\"");
+      else
+        System.out.println("\"" + line + "\" is NOT a Palindrome since it is NOT identical to \"" + reverseUp + "\"");
+   
+      
+      // To get the text statistics
+      for (int i =0; i<size; i++)
+      {
+        if (Character.isSpaceChar(line.charAt(i)))
+          spaces++;
+        
+        if (Character.isLetter(line.charAt(i)))
+          letters++;
+        
+        if (Character.isDigit(line.charAt(i)))
+          digits++;
+        
+        if (Character.isUpperCase(line.charAt(i)))
+          upper++;
+        
+        if (Character.isLowerCase(line.charAt(i)))
+          lower++;
+      }
+      
+      // Output Statistics
+      System.out.println("\nThe Original String \"" + line + "\" contains: ");
+      System.out.println("\nText Statistics are: ");
+      System.out.println(size + " Characters in \"" + line + "\"");
+      System.out.println("Number of blanks are " + spaces);
+      System.out.println("Number of letters are " + letters);
+      System.out.println("Number of digits are " + digits);
+      System.out.println("Number of UPPER case letters are " + upper);
+      System.out.println("Number of lower case letters are " + lower);
+      
+      System.out.println("Continue? (y/n)");
+      again = input.next().charAt(0);
+      again = Character.toLowerCase(again);
+      
+      input.nextLine();
+    }
+  }
+}

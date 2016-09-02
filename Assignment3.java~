@@ -1,0 +1,126 @@
+//CSCI 19A - Assignment 3 by Cindy Lee -- due 7/7/2016
+
+import java.util.*;
+import java.math.*;
+import java.text.*;
+
+public class Assignment3
+{
+  public static float Addition (float n1, float n2) //addition
+  {
+    float total;
+    total = n1 + n2;
+    return total;
+  }
+  
+  public static float Subtraction (float n1, float n2) //subtraction
+  {
+    float diff;
+    diff = n1 - n2;
+    return diff;
+  }
+  
+  public static float Multiplication (float n1, float n2) //multiplication
+  {
+    float product;
+    product = n1 * n2;
+    return product;
+  }
+  
+  public static float Division (float n1, float n2) //division
+  {
+    float ratio;
+    ratio = n1 / n2;
+    return ratio;
+  }
+  
+  public static double Exponentiation (float n1, float n2) //power
+  {
+    double power;
+    power = Math.pow(n1,n2);
+    return power;
+  }
+  
+  public static int Modulo (int n1, int n2) //modulo
+  {
+    int remainder;
+    remainder = n1 % n2;
+    return remainder;
+  }
+
+  public static void All(float n1, float n2) //All Arithmetic
+  {
+    DecimalFormat df = new DecimalFormat ("#,###,###.00");
+    System.out.println (n1 + " + " + n2 + " = " + df.format(Addition(n1, n2)));
+    System.out.println (n1 + " - " + n2 + " = " + df.format(Subtraction(n1, n2)));
+    System.out.println (n1 + " * " + n2 + " = " + df.format(Multiplication(n1, n2)));
+    System.out.println (n1 + " / " + n2 + " = " + df.format(Division(n1, n2)));
+    System.out.println (n1 + " ^ " + n2 + " = " + df.format(Exponentiation(n1, n2)));
+    System.out.println (n1 + " % " + n2 + " = " + df.format(Modulo((int)n1, (int)n2)));
+  }
+  
+  public static void main (String [] args)
+  {
+    Scanner input = new Scanner (System.in);
+    DecimalFormat df = new DecimalFormat ("#,###,###.00");
+    int choice = 0;
+    
+    while (choice !=8)
+    {
+      System.out.println("Enter a Choice (1-8): Select an Option"+
+                         "\n1 - Add Numbers"+
+                         "\n2 - Subtract Numbers"+
+                         "\n3 - Multiply Numbers"+
+                         "\n4 - Divide Numbers"+
+                         "\n5 - Raise Number To the Power of A Second Number"+
+                         "\n6 - Return the Remainder (Mod)"+
+                         "\n7 - All Arithmetic (Add, Subtract, Multiply, Divide, MOD and Raise to a Power)"+
+                         "\n8 - QUIT This Application");
+      
+      choice = input.nextInt();
+      
+      if (choice == 8) //Stop the application before asking for numeric values
+        System.exit(0);
+      
+      System.out.println("You Selected Arithmetic Option " + choice);
+      
+      System.out.print("1 of 2 - Enter First Numeric Value: ");
+      float num1 = input.nextFloat();
+      
+      System.out.print("2 of 2 - Enter Second Numeric Value: ");
+      float num2 = input.nextFloat();
+      
+      
+      switch (choice)
+      {
+        case 1:
+          System.out.println (num1 + " + " + num2 + " = " + df.format(Addition(num1, num2)));
+          break;
+        case 2:
+          System.out.println (num1 + " - " + num2 + " = " + df.format(Subtraction(num1, num2)));
+          break;
+        case 3:
+          System.out.println (num1 + " * " + num2 + " = " + df.format(Multiplication(num1, num2)));
+          break;
+        case 4:
+          System.out.println (num1 + " / " + num2 + " = " + df.format(Division(num1, num2)));
+          break;
+        case 5:
+          System.out.println (num1 + " ^ " + num2 + " = " + df.format(Exponentiation(num1, num2)));
+          break;
+        case 6:
+          System.out.println (num1 + " % " + num2 + " = " + df.format(Modulo((int)num1, (int)num2)));
+          break;
+        case 7:
+          All(num1, num2);
+          break;
+        default:
+          System.out.println("Invalid Input... Ending Application");
+          System.exit(0);
+          break;
+      }
+    }
+  }
+}
+
+                     

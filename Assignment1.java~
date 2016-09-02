@@ -1,0 +1,69 @@
+// CSCI 19A - Assignment 1 by Cindy Lee -- due 6/23/2016
+
+import java.util.*;
+import java.text.*;
+import java.math.*;
+
+public class Assignment1
+{
+  public static void main (String [] args)
+  {
+    Scanner input = new Scanner(System.in);
+    NumberFormat nUS = NumberFormat.getCurrencyInstance(Locale.US);
+    
+    //Declare variables and values
+    double dunselPrice = 10.25;
+    double widgetPrice = 8.75;
+    double lightweightPrice = 4.25;
+    double gidgetPrice = 5.22;
+    double dunselTot, widgetTot, lightweightTot, gidgetTot, salesTax, subTot, shipTot, total;
+    double taxRate = .085;
+    double shipFee = .1;
+    
+    // Ask for inputs
+    System.out.println("Please enter Customer's Account ID");
+    String customerID = input.nextLine();
+    customerID = customerID.toUpperCase();
+    
+    System.out.println("Please enter Customer's Name");
+    String customerName = input.nextLine();
+    customerName = customerName.toUpperCase();
+    
+    System.out.println("Please enter Number of Dunsels");
+    int numDunsel = Math.abs((int)(input.nextDouble())); // Make sure it's positive integer
+    
+    System.out.println("Please enter Number of Widgets");
+    int numWidget = Math.abs((int)(input.nextDouble()));
+    
+    System.out.println("Please enter Number of Lightweights");
+    int numLightweight = Math.abs((int)(input.nextDouble()));
+    
+    System.out.println("Please enter Number of Gidgets");
+    int numGidget = Math.abs((int)(input.nextDouble()));
+    
+    // Calculations
+    dunselTot = numDunsel * dunselPrice;
+    widgetTot = numWidget * widgetPrice;
+    lightweightTot = numLightweight * lightweightPrice;
+    gidgetTot = numGidget * gidgetPrice;
+    subTot = dunselTot + widgetTot + lightweightTot + gidgetTot;
+    salesTax = subTot * taxRate;
+    shipTot = subTot * shipFee;
+    total = subTot + salesTax + shipTot;
+    
+    // Print out invoice
+    System.out.println("Fly By Night Supply Order Invoice - Order #1");
+    System.out.println("Customer ID: "+ customerID + " Customer Name: " + customerName);
+    System.out.println(numDunsel + " Dunsels ordered @ " + nUS.format(dunselPrice) + "\t" + nUS.format(dunselTot));
+    System.out.println(numWidget + " Widgets ordered @ " + nUS.format(widgetPrice) + "\t" + nUS.format(widgetTot));
+    System.out.println(numLightweight + " Lightweights ordered @ " + nUS.format(lightweightPrice) + "\t" + nUS.format(lightweightTot));
+    System.out.println(numGidget + " Gidgets ordered @ " + nUS.format(gidgetPrice) + "\t" + nUS.format(gidgetTot));
+    System.out.println("\nSubtotal\t\t\t" + nUS.format(subTot));
+    System.out.println("Sales Tax @ " + taxRate*100 + "%\t\t" + nUS.format(salesTax));
+    System.out.println("Shipping & Handling @ " + shipFee*100 + "%\t" + nUS.format(shipTot));
+    System.out.println("Total Owed\t\t\t" + nUS.format(total));
+    System.out.println("\n\nEnd of Order....");
+    
+  }
+  
+}
